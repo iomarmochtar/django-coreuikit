@@ -1,0 +1,41 @@
+{% extends "coreuikit/coreui/_skelton.html" %}
+
+{% block body_class %}app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show{% endblock %}
+
+{% block body_contents %}
+
+    {# HEADER BEGIN #}
+    {% include 'coreuikit/coreui/base/header.html' %}
+    {# HEADER END #}
+
+    <div class="app-body">
+
+        {# SIDEBAR BEGIN #}
+        {% include 'coreuikit/coreui/base/sidebar.html' %}
+        {# SIDEBAR END #}
+
+        <main class="main">
+
+            {# BREADCRUMBS BEGIN #}
+            {% include 'coreuikit/coreui/base/breadcrumbs.html' %}
+            {# BREADCRUMBS END #}
+
+            {# MAIN BEGIN #}
+            <div class="container-fluid">
+                {% block contents %}{% endblock %}
+            </div>
+            {# MAIN END #}
+
+        </main>
+    </div>
+
+    {# BASE FOOTER #}
+    {% include  'coreuikit/coreui/base/footer.html' %}
+    {# BASE FOOTER #}
+
+    {% block bottom_css %}
+    {% endblock %}
+
+    {% block bottom_js %}
+    {% endblock %}
+{% endblock %}

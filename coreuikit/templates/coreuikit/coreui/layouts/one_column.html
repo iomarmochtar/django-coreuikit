@@ -1,0 +1,31 @@
+{% extends '../base.html' %}
+
+{% block contents %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+
+            {% block card %}
+
+            {% if card_header %}
+            <div class="card-header">
+                {{ card_header }}
+            </div>
+            {% endif %}
+
+            <div class="card-body">
+                {% block col_contents %}{% endblock %}
+            </div>
+
+            {% if card_footer %}
+            <div class="card-footer">
+                {{ card_footer }}
+            </div>
+            {% endif %}
+
+            {% endblock %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% load crispy_forms_tags %}
+{% load render_table from django_tables2 %}
+
+<p>
+    {% if search_form %}
+    <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#searchForm" aria-expanded="false" aria-controls="searchForm">
+        <span class="fa fa-search"></span> Filter
+    </button>
+    {% endif %}
+
+    {% if add_url %}
+    <a class="btn btn-primary collapsed" href="{{ add_url }}">
+        <span class="fa fa-plus"></span> Add
+    </a>
+    {% endif %}
+</p>
+
+{% if search_form %}
+<div class="collapse{% if search_form.search %} show{% endif %}" id="searchForm">
+    <div class="card card-body">
+        {% crispy search_form %}
+    </div>
+</div>
+{% endif %}
+
+{% if table %}
+{% render_table table %}
+{% endif %}

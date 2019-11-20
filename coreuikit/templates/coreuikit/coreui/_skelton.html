@@ -1,0 +1,87 @@
+{% load staticfiles %}
+{% load sweetify %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{% block page_title %}Dashboard{% endblock %}</title>
+    <!-- Icons-->
+    <link href="{% static "coreuikit/vendors/@coreui/icons/css/coreui-icons.min.css" %}" rel="stylesheet">
+    <link href="{% static "coreuikit/vendors/flag-icon-css/css/flag-icon.min.css" %}" rel="stylesheet">
+    <link href="{% static "coreuikit/vendors/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet">
+    <link href="{% static "coreuikit/vendors/simple-line-icons/css/simple-line-icons.css" %}" rel="stylesheet">
+    <!-- Main styles for this application-->
+    <link href="{% static "coreuikit/css/style.css" %}" rel="stylesheet">
+    <link href="{% static "coreuikit/vendors/pace-progress/css/pace.min.css" %}" rel="stylesheet">
+    <link href="{% static "coreuikit/vendors/sweetalert2/css/sweetalert2.min.css" %}" rel="stylesheet">
+    {% block css %}
+    {% endblock %}
+
+    <script src="{% static "coreuikit/vendors/jquery/js/jquery.min.js" %}"></script>
+    <script src="{% static "coreuikit/vendors/popper.js/js/popper.min.js" %}"></script>
+    <script src="{% static "coreuikit/vendors/bootstrap/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "coreuikit/vendors/pace-progress/js/pace.min.js" %}"></script>
+    <script src="{% static "coreuikit/vendors/perfect-scrollbar/js/perfect-scrollbar.min.js" %}"></script>
+    <script src="{% static "coreuikit/vendors/@coreui/coreui/js/coreui.min.js" %}"></script>
+
+    {# <script src="{% static "coreuikit/vendors/sweetalert/js/sweetalert.min.js" %}"></script> #}
+
+    <script src="{% static "coreuikit/vendors/sweetalert2/js/sweetalert2.all.min.js" %}"></script>
+
+    {% comment %}
+    <script src="{% static "coreuikit/vendors/chart.js/js/Chart.min.js" %}"></script>
+    <script src="{% static "coreuikit/vendors/@coreui/coreui-plugin-chartjs-custom-tooltips/js/custom-tooltips.min.js" %}"></script>
+    <script src="{% static "coreuikit/vendors/@coreui/coreui-plugin-chartjs-custom-tooltips/js/custom-tooltips.min.js" %}"></script>
+    <script src="{% static "coreuikit/js/main.js" %}"></script>
+    {% endcomment %}
+
+
+    {% block js %}
+    {% endblock %}
+
+    {% block thdparty %}
+    {% endblock %}
+
+
+  </head>
+  <body class="{% block body_class%}{% endblock %}">
+      {% block body_contents %}
+      {% endblock %}
+
+      {% sweetify %}
+
+      <script>
+        $(function(){
+            $(document.body).on('click', '.aconfirm', function(e){
+                e.preventDefault();
+
+                var link = $(this).attr('href');
+                var txt = $(this).attr("txt");
+
+                if (!txt)
+                    txt = "Are you sure ?";
+
+                Swal.fire({
+                  title: 'Confirmation',
+                  text: txt,
+                  type: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, delete it!'
+                }).then((willDelete) => {
+                  if (willDelete) {
+                    window.location = link;
+                  }
+                })
+
+            });
+        });
+      </script>
+  </body>
+
+</html>

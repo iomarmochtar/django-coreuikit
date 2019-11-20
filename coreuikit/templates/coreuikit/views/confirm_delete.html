@@ -1,0 +1,22 @@
+{% extends 'coreuikit/coreui/layouts/one_column.html' %}
+{% load i18n %}
+
+{% block card %}
+    <div class="card-header">
+        {% blocktrans %}Confirmation{% endblocktrans %}
+    </div>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="card-body">
+            <div class="card-title">
+                {% blocktrans %}Are you sure you want to delete the <b>{{ object }}</b> and related items?{% endblocktrans %}
+            </div>
+        </div>
+
+        <div class="card-footer">
+              <button type="submit" class="btn btn-warning">{% trans "Yes, I'm sure" %}</button>
+        </div>
+    </form>
+{% endblock %}
+

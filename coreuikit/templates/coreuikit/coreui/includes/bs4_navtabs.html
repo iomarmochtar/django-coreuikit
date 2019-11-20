@@ -1,0 +1,39 @@
+{% comment %}
+contoh data yang dimasukan:
+'tabs': [
+    {'id': 'body_text', 'title': 'Text', 'contents': 'Hello World'},
+    {'id': 'html', 'title': 'HTML', 'contents': 'Hello World', 'active': True},
+    {'id': 'link', 'title': 'Link', 'href': 'http://google.com'},
+]
+{% endcomment %}
+
+<ul class="nav nav-tabs" role="tablist">
+    {% for tab in tabs %}
+    <li class="nav-item">
+        <a 
+            class="nav-link{% if tab.active %} active show{% endif %}" 
+            id="{{tab.id}}-tab"
+            aria-selected="false"
+            {% if tab.contents %}
+                data-toggle="tab"
+                role="tab"
+            {% endif %}
+            href="{% if tab.href %}{{tab.href}}{% else %}#{{tab.id}}-content{% endif %}" 
+        >
+            {{tab.title}}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+<div class="tab-content">
+    {% for tab in tabs %}
+        {% if tab.contents %}
+        <div class="tab-pane{% if tab.active %} active show{% else %} fade{% endif %}" id="{{tab.id}}-content" role="tabpanel" aria-labelledby="{{tab.id}}-tab">
+            {% autoescape off %}
+                {{tab.contents}}
+            {% endautoescape %}
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>

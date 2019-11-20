@@ -1,0 +1,17 @@
+{% extends 'coreuikit/coreui/base.html' %}
+{% load coreuitags %}
+
+{% block contents %}
+<div class="row">
+    <div class="col-md-12">
+        {{ tabs.list|render_tabs:tabs.active }}
+
+        <div class="tab-content">
+            {{ tabs.contents|render_tabs_content:tabs.active }}
+            {% block tab_contents %}
+            {% endblock %}
+        </div>
+
+    </div>
+</div>
+{% endblock %}

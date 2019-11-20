@@ -1,0 +1,2 @@
+Django CoreUI kit
+=================
